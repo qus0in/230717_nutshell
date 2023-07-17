@@ -45,4 +45,4 @@ def handle_graph():
         mermaid = get_mermaid(st.session_state.extracted_text)
         with st.expander("🧜‍♀️ Mermaid Markdown"):
             st.write(mermaid)
-    draw_mermaid(mermaid)
+        draw_mermaid(mermaid)
