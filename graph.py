@@ -6,7 +6,6 @@ def system(msg):
 def user(msg):
     return {"role" : "user", "content": msg}
 
-@st.cache_data
 def get_mermaid(extracted_text):
     openai.api_key = st.secrets["openai_api_key"] # API Key
     messages = [
@@ -27,6 +26,7 @@ def get_mermaid(extracted_text):
 
 def handle_graph():
     if "extracted_text" in st.session_state:
-        mermaid = get_mermaid(st.session_state.extracted_text)
-        with st.expander("🧜‍♀️ Mermaid Markdown"):
-            st.write(mermaid)
+        if st.button("NutShell 생성하기"):
+            mermaid = get_mermaid(st.session_state.extracted_text)
+            with st.expander("🧜‍♀️ Mermaid Markdown"):
+                st.write(mermaid)
