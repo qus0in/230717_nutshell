@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import openai
 
 def system(msg):
@@ -16,7 +15,7 @@ def get_mermaid(extracted_text):
         system("Write a tree-structured mermaid markdown of the cleaned up nutshell in order of importance and relationship."),
         system("I want it to cover important concepts in Python programming and have more than two levels of depth."),
         user(extracted_text),
-        system("Reduce to 1024 characters or less without sacrificing meaning."),
+        system("Reduce to 2048 characters or less without sacrificing meaning."),
         system("The output should only receive markdown wrapped in ```, and the contents of mermaid should be written in Korean."),
         system("Don't show me any results other than mermaid."),
     ]
@@ -26,25 +25,8 @@ def get_mermaid(extracted_text):
     )
     return completion['choices'][0]['message']['content']
 
-def draw_mermaid(mermaid):
-    components.html(
-        f"""
-        <pre class="mermaid">
-            ```
-            {mermaid}
-            ```
-        </pre>
-
-        <script type="module">
-            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-            mermaid.initialize({{ startOnLoad: true }});
-        </script>
-        """
-    )
-
 def handle_graph():
     if "extracted_text" in st.session_state:
         mermaid = get_mermaid(st.session_state.extracted_text)
         with st.expander("🧜‍♀️ Mermaid Markdown"):
             st.write(mermaid)
-        draw_mermaid(mermaid)
