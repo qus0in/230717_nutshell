@@ -1,6 +1,9 @@
 import streamlit as st
-import pdfminer
-from pdfminer.high_level import extract_pages
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfpage import PDFPage
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from io import StringIO
 
 def handle_pdf():
     label = "✅ 파이썬 학습 PDF 파일을 올려주세요"
@@ -14,10 +17,21 @@ def handle_pdf():
         with st.expander("📝 추출한 텍스트"):
             st.write(extracted_text)
 
-def extract_data(uploaded_file):
-    for page_layout in extract_pages(uploaded_file):
-        for element in page_layout:
-            st.write(element)
-    return ""
-    # return "\n".join(data)
+def extract_data(pdf_file):
+    resource_manager = PDFResourceManager()
+    return_string = StringIO()
+    codec = 'utf-8'
+    laparams = LAParams()
+    device = TextConverter(resource_manager, return_string, codec=codec, laparams=laparams)
+    interpreter = PDFPageInterpreter(resource_manager, device)
+
+    for page in PDFPage.get_pages(pdf_file.getvalue(), check_extractable=True):
+        interpreter.process_page(page)
+
+    text = return_string.getvalue()
+
+    device.close()
+    return_string.close()
+
+    return text
 
