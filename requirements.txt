@@ -1,2 +1,2 @@
-pdfminer.six
+pdfplumber
 openai

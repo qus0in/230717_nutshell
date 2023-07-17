@@ -1,6 +1,5 @@
 import streamlit as st
-import pdfminer
-from pdfminer.high_level import extract_pages
+import pdfplumber
 
 def handle_pdf():
     label = "✅ 파이썬 학습 PDF 파일을 올려주세요"
@@ -17,4 +16,12 @@ def handle_pdf():
         if extracted_text:
             with st.expander("📝 추출한 텍스트"):
                 st.write(extracted_text)
+
+def extract_data(pdf_file):
+    data = []
+    with pdfplumber.load(feed) as pdf:
+        pages = pdf.pages
+        for p in pages:
+            data.append(p.extract_tables())
+    return "\n".join(data)
 
