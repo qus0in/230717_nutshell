@@ -23,3 +23,8 @@ def get_mermaid(extracted_text):
         messages=messages
     )
     return completion['choices'][0]['message']['content']
+
+def handle_graph():
+    if "extracted_text" in st.session_state:
+        mermaid = get_mermaid(st.session_state.extracted_text)
+        st.write(mermaid)

@@ -14,7 +14,7 @@ def handle_pdf():
         type="pdf")
     if uploaded_file is not None:
         extracted_text = extract_data(uploaded_file)
-        st.session_state['text'] = extracted_text
+        st.session_state['extracted_text'] = extracted_text
         with st.expander("📝 추출한 텍스트"):
             st.write(extracted_text)
 
