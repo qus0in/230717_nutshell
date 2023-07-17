@@ -1,6 +1,6 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import openai
-import streamlit_mermaid as stmd
 
 def system(msg):
     return {"role" : "system", "content": msg}
@@ -26,10 +26,23 @@ def get_mermaid(extracted_text):
     )
     return completion['choices'][0]['message']['content']
 
+def draw_mermaid(mermaid):
+    components.html(
+        f"""
+        <pre class="mermaid">
+            {code}
+        </pre>
+
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({{ startOnLoad: true }});
+        </script>
+        """
+    )
+
 def handle_graph():
     if "extracted_text" in st.session_state:
         mermaid = get_mermaid(st.session_state.extracted_text)
         with st.expander("🧜‍♀️ Mermaid Markdown"):
             st.write(mermaid)
-    stmd.st_mermaid(mermaid)
-
+    draw_mermaid(mermaid)

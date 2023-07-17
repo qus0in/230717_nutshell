@@ -1,3 +1,2 @@
 pdfminer.six
 openai
-streamlit-mermaid
