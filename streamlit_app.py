@@ -9,3 +9,6 @@ def handle_pdf():
 
 def main():
     handle_pdf()
+
+if __name__ == "__main__":
+    main()
