@@ -15,7 +15,7 @@ def get_mermaid(extracted_text):
         system("Write a tree-structured mermaid markdown of the cleaned up nutshell in order of importance and relationship."),
         system("I want it to cover important concepts in Python programming and have more than two levels of depth."),
         user(extracted_text),
-        system("Reduce to 500 characters or less without sacrificing meaning."),
+        system("Reduce to 1000 characters or less without sacrificing meaning."),
         system("The output should only receive markdown wrapped in ```, and the contents of mermaid should be written in Korean."),
         system("Don't show me any results other than mermaid."),
     ]
