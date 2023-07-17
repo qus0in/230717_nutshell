@@ -28,4 +28,5 @@ def get_mermaid(extracted_text):
 def handle_graph():
     if "extracted_text" in st.session_state:
         mermaid = get_mermaid(st.session_state.extracted_text)
-        st.write(mermaid)
+        with st.expander("🧜‍♀️ Mermaid Markdown"):
+            st.write(mermaid)
