@@ -30,7 +30,7 @@ def draw_mermaid(mermaid):
     components.html(
         f"""
         <pre class="mermaid">
-            {code}
+            {mermaid}
         </pre>
 
         <script type="module">
