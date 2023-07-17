@@ -16,8 +16,9 @@ def handle_pdf():
     # PDF에서 텍스트 추출
     # extracted_text = extract_text_from_pdf(pdf_path)
     extracted_text = extract_text_from_pdf(pdf_path)
-    with st.expander("📝 추출한 텍스트"):
-        st.write(extracted_text)
+    if extracted_text:
+        with st.expander("📝 추출한 텍스트"):
+            st.write(extracted_text)
 
 def extract_text_from_pdf(pdf_path):
     resource_manager = PDFResourceManager()
