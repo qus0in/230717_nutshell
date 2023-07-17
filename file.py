@@ -25,7 +25,7 @@ def extract_data(pdf_file):
     device = TextConverter(resource_manager, return_string, codec=codec, laparams=laparams)
     interpreter = PDFPageInterpreter(resource_manager, device)
 
-    for page in PDFPage.get_pages(pdf_file.getvalue(), check_extractable=True):
+    for page in PDFPage.get_pages(pdf_file, check_extractable=True):
         interpreter.process_page(page)
 
     text = return_string.getvalue()
