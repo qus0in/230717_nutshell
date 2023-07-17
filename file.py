@@ -15,7 +15,7 @@ def handle_pdf():
 
 def extract_data(pdf_file):
     data = []
-    with pdfplumber.load(pdf_file) as pdf:
+    with pdfplumber.open(pdf_file) as pdf:
         pages = pdf.pages
         for p in pages:
             data.append(p.extract_tables())
