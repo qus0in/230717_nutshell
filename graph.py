@@ -1,5 +1,6 @@
 import streamlit as st
 import openai
+import streamlit_mermaid as stmd
 
 def system(msg):
     return {"role" : "system", "content": msg}
@@ -30,3 +31,5 @@ def handle_graph():
         mermaid = get_mermaid(st.session_state.extracted_text)
         with st.expander("🧜‍♀️ Mermaid Markdown"):
             st.write(mermaid)
+    stmd.st_mermaid(mermaid)
+
