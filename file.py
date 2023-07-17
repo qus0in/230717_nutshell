@@ -9,13 +9,9 @@ def handle_pdf():
         label,
         type="pdf")
     if uploaded_file is not None:
-        extracted_text = ""
-        for page_layout in extract_pages(uploaded_file):
-            for element in page_layout:
-                extracted_text += element
-        if extracted_text:
-            with st.expander("📝 추출한 텍스트"):
-                st.write(extracted_text)
+        extracted_text = extract_data(uploaded_file)
+        with st.expander("📝 추출한 텍스트"):
+            st.write(extracted_text)
 
 def extract_data(pdf_file):
     data = []
