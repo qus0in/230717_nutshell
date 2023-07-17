@@ -19,5 +19,7 @@ def extract_data(pdf_file):
         pages = pdf.pages
         for p in pages:
             data.append(p.extract_tables())
-    return "\n".join(data)
+    st.write(data)
+    return ""
+    # return "\n".join(data)
 
