@@ -27,6 +27,7 @@ def get_mermaid(extracted_text):
 def handle_graph():
     if "extracted_text" in st.session_state:
         if st.button("NutShell 생성하기"):
-            mermaid = get_mermaid(st.session_state.extracted_text)
+            with st.spinner("생성하는 중"):
+                mermaid = get_mermaid(st.session_state.extracted_text)
             with st.expander("🧜‍♀️ Mermaid Markdown"):
                 st.write(mermaid)
