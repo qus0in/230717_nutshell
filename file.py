@@ -9,16 +9,15 @@ def handle_pdf():
     label = "✅ 파이썬 학습 PDF 파일을 올려주세요"
     # PDF 문서 경로 지정
     # pdf_path = 'example.pdf'
-    pdf_path = st.file_uploader(
+    uploaded_file = st.file_uploader(
         label,
         type="pdf")
-    # st.write(pdf_path)
-    # PDF에서 텍스트 추출
-    # extracted_text = extract_text_from_pdf(pdf_path)
-    extracted_text = extract_text_from_pdf(pdf_path)
-    if extracted_text:
-        with st.expander("📝 추출한 텍스트"):
-            st.write(extracted_text)
+    if uploaded_file is not None:
+        # PDF에서 텍스트 추출
+        extracted_text = extract_text_from_pdf(uploaded_file)
+        if extracted_text:
+            with st.expander("📝 추출한 텍스트"):
+                st.write(extracted_text)
 
 def extract_text_from_pdf(pdf_path):
     resource_manager = PDFResourceManager()
