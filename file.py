@@ -14,7 +14,7 @@ def handle_pdf():
         type="pdf")
     if uploaded_file is not None:
         # PDF에서 텍스트 추출
-        extracted_text = extract_text_from_pdf(uploaded_file)
+        extracted_text = extract_text_from_pdf(uploaded_file.name)
         if extracted_text:
             with st.expander("📝 추출한 텍스트"):
                 st.write(extracted_text)
